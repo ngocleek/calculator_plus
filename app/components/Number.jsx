@@ -6,19 +6,28 @@ import clsx from 'clsx';
 function Number({value, width, space}) {  // receives styling data
   const {
     display,
-    setDisplay
+    setDisplay,
+    isDone,
+    setIsDone
   } = React.useContext(ResultsContext);
 
 
   function addNumber(number) {
     console.log(number);
     if (number === '.') {
-       const numbers = display.match(/\d+\.?\d*/g);
-       const lastNumber = numbers[numbers.length - 1];
-       console.log(lastNumber);
-       if (lastNumber.includes(".")) return;
+      const numbers = display.match(/\d+\.?\d*/g);
+      const lastNumber = numbers[numbers.length - 1];
+      console.log(lastNumber);
+      if (lastNumber.includes(".")) return;
     }
-    setDisplay((prev) => prev.concat(number));
+    if (isDone) {
+      // clear if a new number pressed after a result
+      setDisplay(number);
+    } else {
+      setIsDone(false);
+      setDisplay((prev) => prev.concat(number));
+    }
+    console.log("hello " + display);
   }
 
 

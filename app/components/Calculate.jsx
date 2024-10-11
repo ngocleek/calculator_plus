@@ -9,7 +9,9 @@ function Calculate() {
     display,
     setDisplay,
     setHistory,
+    setIsDone
   } = useContext(ResultsContext);
+
 
   function Calc() {
     try {
@@ -21,6 +23,7 @@ function Calculate() {
         expression: display,
         result: result
       }])
+      setIsDone(true)
     } catch (error) {
       alert(error)
     }

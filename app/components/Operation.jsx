@@ -3,11 +3,16 @@ import React from 'react';
 import { ResultsContext } from '../contexts/ResultsContext';
 
 function Operation({value, label}) {
-  const { display, setDisplay } = React.useContext(ResultsContext)
+  const {
+    display,
+    setDisplay,
+    setIsDone
+   } = React.useContext(ResultsContext)
+
 
   function addOperation(operation) {
     console.log(operation)
-    
+
     // Check if previous char is a operation
     const prevChar = display.trim().slice(-1);
     if (['+', '-', '*', '\\'].includes(prevChar)) {
@@ -18,7 +23,8 @@ function Operation({value, label}) {
     } else {
       setDisplay((prev) => prev.concat(operation));
     }
-    
+    setIsDone(false);
+
   }
 
   return (
