@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import {evaluate, format} from 'mathjs';
 
 import { ResultsContext } from '../contexts/ResultsContext';
 import { HistoryContext } from '../contexts/HistoryContext';
@@ -15,7 +16,7 @@ function Calculate() {
 
   function Calc() {
     try {
-      const result = eval(display).toString();
+      const result = format(evaluate(display), {precision: 14});
 
       setDisplay(result);
       setHistory((prev) => [...prev, {
