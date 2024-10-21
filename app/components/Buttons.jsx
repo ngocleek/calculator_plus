@@ -5,7 +5,7 @@ import {
 	PiX,
 	PiPlus,
 	PiPercent,
-	PiPlusMinus,
+	PiArrowFatLeft,
 } from "react-icons/pi";
 
 import Number from "./Number";
@@ -17,7 +17,7 @@ function Buttons() {
 	return (
 		<div className="grid grid-cols-4 place-items-center gap-4 text-4xl font-thin">
 			<Utility value="AC" ancho="w-18" />
-			<Utility value="+/-" label={<PiPlusMinus className="mx-auto" />} />
+			<Utility value="DEL" label={<PiArrowFatLeft className="mx-auto" />} />
 			<Utility value="%" label={<PiPercent className="mx-auto" />} />
 			<Operation value="/" label={<PiDivide className="mx-auto" />} />
 			<Number value="7" ancho="w-18" />

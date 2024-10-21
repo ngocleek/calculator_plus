@@ -9,16 +9,17 @@ function Number({ value, width, space }) {
     React.useContext(ResultsContext);
 
   function addNumber(number) {
-    console.log(number);
     if (isDone) { // clear if a new number pressed after a result
-      setDisplay((prev) => "");
+      setDisplay("");
     }
 
     if (number === ".") {
       var numbers = display.split(/\+|\-|\*|\//g); // split at + - * /
       const lastNumber = numbers[numbers.length - 1];
-      if (lastNumber.includes(".")) { // prevent repeated . on a number
-        return;}
+      if (lastNumber.includes(".") && !isDone) { // ? Set display have not update display, !isDone to allow '.' button to execute after the previous expression is done
+        return; // prevent repeated . on a number
+      }
+
     }
 
     setDisplay((prev) => prev.concat(number));

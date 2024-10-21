@@ -11,11 +11,11 @@ function Operation({value, label}) {
 
 
   function addOperation(operation) {
-    console.log(operation)
+    if (display === "") return; // operator cannot be the start of expresion, return early
 
     // Check if previous char is a operation
     const prevChar = display.trim().slice(-1);
-    if (['+', '-', '*', '\\'].includes(prevChar)) {
+    if (['+', '-', '*', '/'].includes(prevChar)) {
       setDisplay((prev) => {
         const _prev = prev.slice(0, -1); //remove the last character
         return _prev.concat(operation);

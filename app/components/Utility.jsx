@@ -1,21 +1,23 @@
 import { useContext } from "react";
+import { evaluate, string } from "mathjs";
 
 import { ResultsContext } from "../contexts/ResultsContext";
 
 function Utility({ value, label }) {
-	const { setDisplay } = useContext(ResultsContext);
+	const { display, setDisplay, setIsDone } = useContext(ResultsContext);
 
 	function applyUtil(utility) {
 		switch (utility) {
 			case "AC":
-				console.log("AC");
-				setDisplay("");
+				setDisplay((prev) => "");
+				setIsDone(true);
 				break;
 			case "%":
-				console.log("%");
+				setDisplay((prev) => prev.concat("%"));
 				break;
-			case "+/-":
-				console.log("+/-");
+			case "DEL":
+				setDisplay((prev) => prev.slice(0, prev.length-1));
+				setIsDone(false);
 				break;
 		}
 	}
