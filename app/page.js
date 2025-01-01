@@ -1,33 +1,27 @@
 "use client";
-import { useContext } from "react";
-import { ResultsContext } from './contexts/ResultsContext';
-import { useResults } from './hooks/useResults';
+import React, { useContext, useState } from "react";
+import { useResults } from "./hooks/useResults";
 
-import { HistoryContext } from './contexts/HistoryContext.js';
+import { ResultsContext } from "./contexts/ResultsContext";
+import { HistoryContext } from "./contexts/HistoryContext";
+import { DisplayContext } from "./contexts/DisplayContext";
 
-import Buttons from './components/Buttons';
-import Result from './components/Result';
-import History from './components/History';
+import Buttons from "./components/Buttons";
+import Result from "./components/Result";
+import History from "./components/History";
+import Home from "./components/Home";
+import Recent from "./components/Recent";
 
-export default function Home() {
-  const results = useResults();
+import { LuHistory } from "react-icons/lu";
+import { useHistory } from "./hooks/useHistory";
+import Download from "./components/Download";
 
-  function openHistory() {
-    setIsHistoryShown(true)
-  }
+export default function App() {
+  const [display, setDisplay] = useState(false);
 
   return (
-    <ResultsContext.Provider value={results}>
-      <div className="w-screen h-screen flex justify-center">
-        <div className='w-full h-full flex flex-col justify-end p-4 bg-black rounded-2xl max-w-md ssm:border-r ssm:border-r-border ssm:border-l ssm:border-l-border'>
-          {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={30} height={30}
-            className="absolute top-4 fill-current text-gray-400   hover:cursor-pointer hover:scale-110 transition-all duration-200"
-            onClick={openHistory}>
-            <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z" /></svg> */}
-          <Result />
-          <Buttons />
-        </div>
-      </div>
-    </ResultsContext.Provider>
+    <Display.Provider value={[display, setDisplay]}>
+      <>{display ? <History /> : <Home />}</>
+    </Display.Provider>
   );
 }

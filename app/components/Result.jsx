@@ -8,10 +8,11 @@ import Recent from './Recent';
 function Result() {
   const { display, history } = useContext(ResultsContext)
   console.log(history);
+  // console.log("Hi " + history[0].expression);
 
   return(
     <div>
-      <Recent />
+      {/* <Recent /> */}
       <div className={clsx('w-full h-auto mb-10 font-thin text-white flex items-center justify-end break-word text-end')}>
       <StyledEquation equation={display} />
     </div>
