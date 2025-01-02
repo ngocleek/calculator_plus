@@ -1,23 +1,18 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { useResults } from "./hooks/useResults";
+import { useResults } from "../hooks/useResults";
 
-import { ResultsContext } from "./contexts/ResultsContext";
-import { HistoryContext } from "./contexts/HistoryContext";
-import { DisplayContext } from "./contexts/DisplayContext";
+import { ResultsContext } from "../contexts/ResultsContext";
+import { DisplayContext } from "../contexts/DisplayContext";
 
 import Buttons from "./Buttons";
 import Result from "./Result";
-import History from "./History";
-import Recent from "./Recent";
 
 import { LuHistory } from "react-icons/lu";
-import { useHistory } from "./hooks/useHistory";
-import Download from "./components/Download";
 
 function Home() {
   const results = useResults();
-  const [display, setDisplay] = useContext(Display);
+  const [display, setDisplay] = useContext(DisplayContext);
 
   return (
     <ResultsContext.Provider value={results}>
@@ -34,3 +29,4 @@ function Home() {
     </ResultsContext.Provider>
   );
 }
+export default Home;

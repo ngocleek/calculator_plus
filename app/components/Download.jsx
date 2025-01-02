@@ -1,10 +1,10 @@
 import React from "react";
 import { format } from "date-fns";
 import { CiSaveUp2 } from "react-icons/ci";
-import { useHistory } from "../hooks/useHistory";
+import { useResults } from "../hooks/useResults";
 
 export default function Download() {
-  const { history } = useHistory();
+  const { history } = useResults();
 
   function convertToCSV() {
     let csvContent = "date, time, expression, result\r\n";
@@ -34,7 +34,7 @@ export default function Download() {
   return (
     <CiSaveUp2
       onClick={downloadFile}
-      className="relative size-9 fill-current text-gray-400   hover:cursor-pointer hover:scale-110 transition-all duration-200"
+      className="relative size-9 fill-current text-gray-400 hover:cursor-pointer hover:scale-110 transition-all duration-200"
     />
   );
 }

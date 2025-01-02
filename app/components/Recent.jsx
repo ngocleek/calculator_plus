@@ -4,7 +4,6 @@ import { ResultsContext } from "../contexts/ResultsContext";
 import { format, formatRelative } from "date-fns";
 import { Calendar } from "primereact/calendar";
 import StyledEquation from "./StyledEquation";
-
 import vi from "date-fns/locale/vi";
 
 function Recent() {
@@ -17,9 +16,7 @@ function Recent() {
   }, [history]);
 
   useEffect(() => {
-    console.log("dates", dates);
     if (dates === null) {
-      console.log("backto history");
       setFilteredHistory(history);
     } else {
       setFilteredHistory(
@@ -65,14 +62,10 @@ function Recent() {
     });
   }
 
-  console.log("fhistory", filteredHistory);
-  console.log("history", history);
-
   return (
     <>
-      <div className="w-full h-full mb-5 mt-7 overflow-auto font-light text-gray-300">
+      <div className="flex flex-col-reverse w-full h-full mb-5 mt-7 overflow-auto font-light text-gray-300">
         <ul className="w-full divide-y divide-gray-700">
-          {console.log("fhistory", filteredHistory)}
           {filteredHistory.map((data, index) => (
             <li className="py-1" key={index}>
               <div className="flex items-center space-x-4">

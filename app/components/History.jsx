@@ -3,35 +3,16 @@ import React, { useContext, useState } from "react";
 import { useResults } from "../hooks/useResults";
 
 import { ResultsContext } from "../contexts/ResultsContext";
-import { HistoryContext } from "../contexts/HistoryContext";
 import { DisplayContext } from "../contexts/DisplayContext";
 
-import Buttons from "./Buttons";
-import Result from "./Result";
 import Recent from "./Recent";
 
 import { LuHistory } from "react-icons/lu";
-import { useHistory } from "../hooks/useHistory";
 import Download from "./Download";
 
 function History() {
   const results = useResults();
-  const { history } = useHistory();
   const [display, setDisplay] = useContext(DisplayContext);
-
-  const handleSave = async () => {
-    history.map((data, index) => {
-      const entry = {
-        date: data.time,
-        time: data.time,
-        calculation: data.expression,
-        result: data.result,
-      };
-      console.log("entry", entry);
-    });
-    console.log(process.env.NEXT_PUBLIC_SHEET_ID);
-    console.log(process.env.NEXT_PUBLIC_GOOGLE_APPLICATION_CREDENTIAL);
-  };
 
   return (
     <ResultsContext.Provider value={results}>
@@ -50,3 +31,4 @@ function History() {
     </ResultsContext.Provider>
   );
 }
+export default History;
