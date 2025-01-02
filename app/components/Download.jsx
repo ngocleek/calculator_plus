@@ -11,25 +11,23 @@ export default function Download() {
     history.forEach((row) => {
       csvContent +=
         [
-          format(row.time, "P"),
-          format(row.time, "pp"),
+          format(row.time, "P"), // format to '11/12/2000'
+          format(row.time, "pp"), // format to '5:20:15 AM
           row.expression,
           row.result,
         ].join(", ") + "\r\n";
     });
     return new Blob([csvContent], { type: "text" });
   }
+
   function downloadFile() {
-    const aTag = document.createElement("a"),
+    const aTag = document.createElement("a"), //create new element to download
       url = URL.createObjectURL(convertToCSV());
     aTag.href = url;
     aTag.download = `cal_history${new Date().toJSON().slice(0, 10)}.csv`;
     document.body.appendChild(aTag);
     aTag.click();
-    setTimeout(function () {
-      document.body.removeChild(aTag);
-      window.URL.revokeObjectURL(url);
-    }, 0);
+    document.body.removeChild(aTag); // remove element
   }
   return (
     <CiSaveUp2

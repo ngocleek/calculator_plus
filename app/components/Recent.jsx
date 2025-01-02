@@ -71,7 +71,7 @@ function Recent() {
               <div className="flex items-center space-x-4">
                 <div className="flex-1 min-w-16">
                   <p className="text-sm font-medium truncate text-white">
-                    {format(data.time, "HH:mm aaa")}
+                    {format(data.time, "p") /* format to '5:20 AM*/}
                   </p>
                   <p className="text-sm text-white truncate dark:text-gray-400">
                     {formatRelative(data.time, new Date(), { locale })}

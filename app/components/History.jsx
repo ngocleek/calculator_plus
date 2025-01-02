@@ -19,7 +19,7 @@ function History() {
       <div className="w-screen h-screen flex justify-center">
         <div className="w-full h-full flex flex-col justify-end p-4 bg-black rounded-2xl max-w-md ssm:border-r ssm:border-r-border ssm:border-l ssm:border-l-border">
           <div className="w-full flex justify-between">
-            <LuHistory
+            <LuHistory // change between display
               onClick={() => setDisplay(!display)}
               className="relative size-9 text-gray-400   hover:cursor-pointer hover:scale-110 transition-all duration-200"
             />
