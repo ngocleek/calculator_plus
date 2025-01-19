@@ -3,6 +3,17 @@ import withPWA from 'next-pwa';
 
 const nextConfig = {
   reactStrictMode: true,
+  headers: async () => [
+    {
+      source: '/sw.js',
+      headers: [
+        {
+          key: 'Service-Worker-Allowed',
+          value: '/',
+        },
+      ],
+    },
+  ],
 };
 
 const pwaConfig = withPWA({
