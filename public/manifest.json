@@ -2,7 +2,7 @@
   "name": "Máy Tính +",
   "short_name": "Máy Tính +",
   "description": "Máy tính lưu lịch sử tính toán",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#000000",
