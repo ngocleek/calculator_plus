@@ -12,7 +12,7 @@ function Result() {
     <div>
       <div
         className={clsx(
-          "w-full h-auto mb-10 font-thin text-white flex items-center justify-end break-word text-end"
+          "w-full h-auto my-8 font-thin text-white flex items-center justify-end break-word text-end min-h-[20px]"
         )}
       >
         <StyledEquation equation={display} />

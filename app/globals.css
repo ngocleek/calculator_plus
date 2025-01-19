@@ -1,7 +1,11 @@
+/* PrimeReact CSS should be imported before Tailwind to prevent conflicts */
+@import "primereact/resources/themes/lara-dark-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "primereact/resources/themes/lara-dark-blue/theme.css";
 
 :root {
   --background: #ffffff;
@@ -24,4 +28,37 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Add this to ensure PrimeReact components are properly styled */
+@layer base {
+  button, input, select, textarea {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+}
+
+.p-dialog .p-dialog-content {
+  padding: 10px 10px;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 15px;
+  border-bottom: 1px solid #171717;
+}
+
+.p-dialog .p-dialog-footer {
+  padding: 15px;
+  border-top: 1px solid #171717;
+}
+
+.p-component {
+  padding: 10px;
+}
+
+.p-datepicker-month.p-link {
+  padding: 0 5px;
+}
+
+.p-datepicker-year.p-link {
+  padding: 0 5px;
 }

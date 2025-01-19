@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { syncWithGoogleSheets } from "../utils/googleSheets";
 
 function useResults() {
   const [display, setDisplay] = useState("");
-  const [finalResult, setFinalResult] = useState(""); // used for result printing
-  const [isDone, setIsDone] = useState(true); // allows or blocks replacement of result after calculus
-
-  const [bringData, setBringData] = React.useState(true); // flag to know if it has to read or write data into localStorage
-
+  const [finalResult, setFinalResult] = useState("");
+  const [isDone, setIsDone] = useState(true);
   const [textResult, setTextResult] = useState("");
-
   const [history, setHistory] = React.useState([]);
 
+  // Load from localStorage only on initial load
   useEffect(() => {
-    if (bringData) {
-      const localStorageData = localStorage.getItem("RESULTS");
-      if (localStorageData) {
-        const parsedData = JSON.parse(localStorageData);
-        setHistory(parsedData); // saves retrieved data from localStorage into 'history'
-      } else {
-        localStorage.setItem("RESULTS", JSON.stringify([])); // creates a 'RESULTS' item in localStorage -> Avoids error if first time use
-      }
-      setBringData(false); // once data is read, it doesn't need to be read again, so it switches to writing
-    } else {
-      localStorage.setItem("RESULTS", JSON.stringify(history));
+    const localStorageData = localStorage.getItem("RESULTS");
+    if (localStorageData) {
+      setHistory(JSON.parse(localStorageData));
     }
-  }, [history]); // executes once and every time 'history' changes
+  }, []);
+
+  // Save to localStorage and push to Google Sheets whenever history changes
+  useEffect(() => {
+    if (history.length > 0) {
+      localStorage.setItem("RESULTS", JSON.stringify(history));
+      // Push the updated history to Google Sheets
+      syncWithGoogleSheets(history).catch(error => {
+        console.error('Failed to sync with Google Sheets:', error);
+      });
+    }
+  }, [history]);
 
   return {
     finalResult,
