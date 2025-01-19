@@ -17,7 +17,7 @@ export const metadata = {
   title: "Máy Tính +",
   description: "Máy tính",
   icons: {
-    icon: "/icon-128x128.png",
+    icon: "/icon-512x512.png",
   },
 };
 
