@@ -18,10 +18,15 @@ const pwaConfig = withPWA({
         cacheName: 'offlineCache',
         expiration: {
           maxEntries: 200,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
         },
       },
     },
   ],
+  buildExcludes: [/middleware-manifest\.json$/],
+  fallbacks: {
+    document: '/offline',
+  }
 })(nextConfig);
 
 export default pwaConfig;
