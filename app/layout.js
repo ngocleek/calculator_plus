@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata = {
   title: "Máy Tính +",
   description: "Máy tính",
+  icons: {
+    icon: "/icon-128x128.png",
+  },
 };
 
 export default function RootLayout({ children }) {
