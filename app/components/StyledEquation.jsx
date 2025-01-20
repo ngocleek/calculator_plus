@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { PiDivide, PiPlus, PiX, PiMinus } from "react-icons/pi";
 
 function StyledEquation({ equation }) {
   // Regex to split the equation into numbers and operators

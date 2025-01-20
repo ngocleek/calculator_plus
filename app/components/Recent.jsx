@@ -1,17 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Dialog } from 'primereact/dialog';
 
 import { ResultsContext } from "../contexts/ResultsContext";
 import { format, formatRelative } from "date-fns";
 import { Calendar } from "primereact/calendar";
-import StyledEquation from "./StyledEquation";
 import vi from "date-fns/locale/vi";
 import { useDeleteHandler } from '../hooks/useDeleteHandler';
 import { DeleteDialog } from './DeleteDialog';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { formatExpression } from "../utils/formatExpression";
 
 function Recent() {
-  const { history, setHistory } = React.useContext(ResultsContext);
+  const { history, setHistory } = useContext(ResultsContext);
   const [dates, setDates] = useState([new Date(), new Date()]);
   const [filteredHistory, setFilteredHistory] = useState(history);
   
@@ -51,25 +50,6 @@ function Recent() {
     ...vi,
     formatRelative: (token) => formatRelativeLocale[token],
   };
-
-  function formatExpression(expression) {
-    const parts = expression.split(/([+\-*/])/); // Split by operators
-
-    return parts.map((part, index) => {
-      // If it's an operator, add <wbr /> before it
-      if (["+", "-", "*", "/"].includes(part)) {
-        const operatorSymbol = part === "*" ? "×" : part === "/" ? "÷" : part;
-        return (
-          <span key={index} className="px-0.5">
-            <wbr />
-            {operatorSymbol}
-          </span>
-        );
-      }
-      // Return the number or part of the expression as is
-      return <span key={index}>{part}</span>;
-    });
-  }
 
   const dateTemplate = (date) => {
     if (!date) return null;

@@ -3,10 +3,9 @@ import React, { useContext } from "react";
 import { ResultsContext } from "../contexts/ResultsContext";
 import clsx from "clsx";
 import StyledEquation from "./StyledEquation";
-import Recent from "./Recent";
 
 function Result() {
-  const { display, history } = useContext(ResultsContext);
+  const { display } = useContext(ResultsContext);
 
   return (
     <div>

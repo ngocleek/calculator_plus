@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { evaluate, string } from "mathjs";
 
 import { ResultsContext } from "../contexts/ResultsContext";
 
 function Utility({ value, label }) {
-	const { display, setDisplay, setIsDone } = useContext(ResultsContext);
+	const { setDisplay, setIsDone } = useContext(ResultsContext);
 
 	function applyUtil(utility) {
 		switch (utility) {

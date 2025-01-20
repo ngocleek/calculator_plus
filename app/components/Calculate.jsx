@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { evaluate, format } from "mathjs";
 
 import { ResultsContext } from "../contexts/ResultsContext";
-import { HistoryContext } from "../contexts/HistoryContext";
 
 function Calculate() {
   const { display, setDisplay, setHistory, setIsDone } =

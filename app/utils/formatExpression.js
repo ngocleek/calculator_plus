@@ -19,7 +19,6 @@ export function formatExpression(expression) {
   });
 }
 
-// Thêm hàm này để lấy text thuần túy cho dialog
 export function formatExpressionAsString(expression) {
   const parts = expression.split(/([+\-*/])/);
   return parts.map(part => {

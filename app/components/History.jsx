@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useResults } from "../hooks/useResults";
 
 import { ResultsContext } from "../contexts/ResultsContext";
