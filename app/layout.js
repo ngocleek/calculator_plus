@@ -19,6 +19,7 @@ export const metadata = {
   icons: {
     icon: "/icon-512x512.png",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
