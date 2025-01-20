@@ -8,21 +8,19 @@ import { DisplayContext } from "../contexts/DisplayContext";
 import Buttons from "./Buttons";
 import Result from "./Result";
 
-import { LuHistory } from "react-icons/lu";
-import { format, formatRelative } from "date-fns";
+import { LuHistory, LuSettings2 } from "react-icons/lu";
+import { format } from "date-fns";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useDeleteHandler } from '../hooks/useDeleteHandler';
 import { DeleteDialog } from './DeleteDialog';
 import { formatExpression } from "../utils/formatExpression";
 import Settings from './Settings';
-import { LuSettings2 } from "react-icons/lu";
 
 function Home() {
   const results = useResults();
   const [display, setDisplay] = useContext(DisplayContext);
   const scrollbarRef = useRef(null);
-  const [scrollElement, setScrollElement] = useState(null);
   
   const {
     selectedItem,
@@ -42,10 +40,10 @@ function Home() {
   };
 
   useEffect(() => {
-    if (scrollElement) {
-      scrollElement.scrollTop = scrollElement.scrollHeight;
+    if (scrollbarRef.current) {
+      scrollbarRef.current.scrollTop = scrollbarRef.current.scrollHeight;
     }
-  }, [scrollElement]);
+  }, [todayCalculated]);
 
   return (
     <ResultsContext.Provider value={results}>
@@ -66,7 +64,7 @@ function Home() {
           </div>
           <div className="pt-10 flex-1 overflow-hidden">
             <PerfectScrollbar
-              containerRef={setScrollElement}
+              containerRef={ref => scrollbarRef.current = ref}
               options={{ suppressScrollX: true }}
               className="h-full"
             >
